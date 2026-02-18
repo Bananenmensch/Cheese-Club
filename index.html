@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cheese Club Bot – Funktionen & Dokumentation</title>
+  <meta name="description" content="Übersicht und detaillierte Erklärung aller Funktionen des Cheese Club Discord Bots." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <div class="brand">
+        <div class="brand__logo" aria-hidden="true">🧀</div>
+        <div class="brand__text">
+          <div class="brand__name">Cheese Club Bot</div>
+          <div class="brand__tag">Funktionen • Befehle • Setup</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#overview">Übersicht</a>
+        <a href="#features">Features</a>
+        <a href="#commands">Commands</a>
+        <a href="#setup">Setup</a>
+        <a href="#data">Daten</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <h1>Cheese Club Bot</h1>
+          <p class="lead">
+            Moderation, Tickets, Modmail, Anti-Spam, Anti-Raid, TempVoice und Server-Setup – zentral konfigurierbar
+            und mit nachvollziehbaren Logs.
+          </p>
+          <div class="chips">
+            <span class="chip">discord.py</span>
+            <span class="chip">Slash Commands</span>
+            <span class="chip">SQLite</span>
+            <span class="chip">AutoLog</span>
+            <span class="chip">24/7 Ready</span>
+          </div>
+
+          <div class="callouts">
+            <div class="callout">
+              <div class="callout__title">Ziel</div>
+              <div class="callout__body">Server-Moderation und Support-Prozesse automatisieren, ohne „Command-Spam“.</div>
+            </div>
+            <div class="callout">
+              <div class="callout__title">Konzept</div>
+              <div class="callout__body">Rollen-basiert: Dev (Setup) + Supporter (Moderation) mit feineren Permissions.</div>
+            </div>
+            <div class="callout">
+              <div class="callout__title">Stand</div>
+              <div class="callout__body">Dokumentation generiert am <strong>2026-02-17</strong>.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__panel">
+          <h2>Quick Facts</h2>
+          <ul class="kpi">
+            <li><span class="kpi__k">Konfiguration</span><span class="kpi__v">Setup Commands + Dropdowns</span></li>
+            <li><span class="kpi__k">Logs</span><span class="kpi__v">Actor + Target + Reason</span></li>
+            <li><span class="kpi__k">Persistenz</span><span class="kpi__v">SQLite (Restart‑safe)</span></li>
+            <li><span class="kpi__k">Support</span><span class="kpi__v">Tickets + Modmail</span></li>
+            <li><span class="kpi__k">Security</span><span class="kpi__v">Minimal Permissions empfohlen</span></li>
+          </ul>
+          <p class="note">
+            Tipp: Für Verifizierung/Trust sind minimale Permissions + Privacy Policy/ToS sinnvoll.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2>Funktionen (detailliert)</h2>
+        <p class="sub">
+          Alle Funktionen als einzelne Auflistung – mit Erklärung, wofür sie gedacht ist.
+        </p>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Setup & Rollen</h3>
+            <ul>
+              <li><strong>Dev‑Rolle:</strong> darf Setup/Settings ändern.</li>
+              <li><strong>Supporter‑Rollen:</strong> dürfen Moderations-/Support‑Commands ausführen.</li>
+              <li><strong>Warnrolle:</strong> wird automatisch beim Warnen vergeben.</li>
+              <li><strong>Fein‑Permissions:</strong> pro Supporter‑Rolle definierbar (z.B. kick/ban/timeout/roles/purge/modmail).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Moderation</h3>
+            <ul>
+              <li><strong>/warn:</strong> Warnung speichern + Warnrolle setzen.</li>
+              <li><strong>/warn_message:</strong> Message‑ID „verwarnen“ (loggt, löscht, vergibt Warnrolle).</li>
+              <li><strong>/timeout:</strong> Timeout in Minuten inkl. Reason.</li>
+              <li><strong>/kick /ban:</strong> klassische Moderation.</li>
+              <li><strong>/purge:</strong> Nachrichten löschen (mit Permission‑Gate).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Tickets</h3>
+            <ul>
+              <li><strong>Ticketpanel:</strong> Dropdown (z.B. Support/Hacking/Spam/…)</li>
+              <li><strong>Eigene Kategorie:</strong> Tickets werden in einer konfigurierten Kategorie erstellt.</li>
+              <li><strong>Archivieren:</strong> Ticket schließbar/archivierbar + optional Lösch‑Hinweis.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Modmail (DM → Support‑Chat)</h3>
+            <ul>
+              <li><strong>/msg-support:</strong> eröffnet Support‑Chat pro User.</li>
+              <li><strong>Weiterleitung:</strong> User‑DMs werden in den Support‑Chat gespiegelt und umgekehrt.</li>
+              <li><strong>Deaktivierbar:</strong> Chat schließen/stoppen möglich.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Announcements</h3>
+            <ul>
+              <li><strong>Announcement‑Channel:</strong> festlegbar.</li>
+              <li><strong>/announce:</strong> schreibt Ankündigung in den configured Channel.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Welcome & AutoRole</h3>
+            <ul>
+              <li><strong>Welcome Message:</strong> konfigurierbar + bei Join automatisch gesendet.</li>
+              <li><strong>AutoRole:</strong> Rolle bei Join setzen/entfernen (Dev‑only Setup).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>AutoMod (Anti‑Spam)</h3>
+            <ul>
+              <li><strong>Spam‑Detection:</strong> Message‑Bursts, Wiederholungen, Flooding.</li>
+              <li><strong>Aktionen:</strong> Warn/Timeout/Log (konfigurierbar).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Anti‑Raid</h3>
+            <ul>
+              <li><strong>Join‑Rate:</strong> viele Joins in kurzer Zeit → Schutzmaßnahmen.</li>
+              <li><strong>Optional Lockdown:</strong> je nach Setup (Dev‑Konfig).</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>TempVoice</h3>
+            <ul>
+              <li><strong>/tempvoice:</strong> erstellt Voice‑Channel (öffentlich oder privat).</li>
+              <li><strong>Privat:</strong> Zugriff nur für ausgewählte Member.</li>
+              <li><strong>Auto‑Cleanup:</strong> wenn leer, nach 60s löschen.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Sync & Maintenance</h3>
+            <ul>
+              <li><strong>/sync:</strong> Slash‑Commands schnell im Server aktualisieren.</li>
+              <li><strong>Robustes Cog‑Loading:</strong> Extensions laden/reloaden sicher.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>AutoLog</h3>
+            <ul>
+              <li><strong>Konfigurierbarer Log‑Channel.</strong></li>
+              <li><strong>Events auswählbar:</strong> moderation, tickets, antiraid, automod, announcements, roles, modmail.</li>
+              <li><strong>Actor‑Logging:</strong> wer hat den Command ausgeführt.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Role‑Management</h3>
+            <ul>
+              <li><strong>/role_add /role_remove:</strong> Rollen geben/nehmen.</li>
+              <li><strong>Rang‑Schutz:</strong> nur Rollen unterhalb des eigenen Rangs (Best Practice).</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="commands">
+      <div class="container">
+        <h2>Commands (Übersicht)</h2>
+        <p class="sub">
+          Je nach Rollen/Checks sind einige Commands nur für Dev oder Supporter sichtbar.
+        </p>
+
+        <div class="two">
+          <div class="panel">
+            <h3>Dev / Setup</h3>
+            <ul class="cmd">
+              <li><code>/setup_roles</code> – Dev/Supporter/Warn Rollen setzen</li>
+              <li><code>/setup_logs</code> – AutoLog Channel + Events</li>
+              <li><code>/setup_tickets</code> – Ticket Kategorie/Channel/Optionen</li>
+              <li><code>/setup_timeouts</code> – Timeout‑Werte (AutoMod/AntiRaid)</li>
+              <li><code>/config_show</code> – zeigt gespeicherte Settings</li>
+              <li><code>/sync</code> – Slash Commands im Server syncen</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Support / Moderation</h3>
+            <ul class="cmd">
+              <li><code>/warn</code> – verwarnen + Warnrolle</li>
+              <li><code>/warn_message</code> – Message‑ID verwarnen (log + delete)</li>
+              <li><code>/warnings</code> – Warncount anzeigen</li>
+              <li><code>/timeout</code> – Timeout in Minuten</li>
+              <li><code>/kick</code> – kick</li>
+              <li><code>/ban</code> – ban</li>
+              <li><code>/purge</code> – Nachrichten löschen</li>
+              <li><code>/role_add</code> / <code>/role_remove</code> – Rollen managen</li>
+              <li><code>/ticketpanel</code> – Ticket-Dropdown posten</li>
+              <li><code>/announce</code> – Announcement posten</li>
+              <li><code>/msg-support</code> – Modmail/Support‑Chat öffnen</li>
+              <li><code>/tempvoice</code> – temporären Voicechannel erstellen</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="setup">
+      <div class="container">
+        <h2>Setup Ablauf (empfohlen)</h2>
+        <ol class="steps">
+          <li><strong>Dev‑Rolle setzen</strong> (damit nur du Settings ändern kannst).</li>
+          <li><strong>Supporter‑Rollen setzen</strong> (wer moderieren darf).</li>
+          <li><strong>Warnrolle setzen</strong> (wird automatisch vergeben).</li>
+          <li><strong>Log‑Channel & Events</strong> (für Nachvollziehbarkeit).</li>
+          <li><strong>Tickets / Modmail</strong> (Category/Channels festlegen und Panel posten).</li>
+          <li><strong>Welcome/Autorole</strong> (optional).</li>
+          <li><strong>AutoMod/AntiRaid Timeouts</strong> (optional).</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="data">
+      <div class="container">
+        <h2>Daten & Speicherung</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Was wird gespeichert?</h3>
+            <ul>
+              <li>Konfiguration: Role IDs, Channel IDs, Optionen</li>
+              <li>Warnungen: User, Moderator, Grund, Zeit</li>
+              <li>Tickets/Modmail: Metadaten, optional Inhalte</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Warum?</h3>
+            <p>Damit Settings nach Neustart erhalten bleiben und Moderationsvorgänge nachvollziehbar sind.</p>
+          </article>
+          <article class="card">
+            <h3>Wo?</h3>
+            <p>SQLite Datenbank (<code>bot.sqlite3</code>) auf deinem Server.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Warum sehe ich manche Commands nicht?</summary>
+          <p>Discord zeigt Slash Commands abhängig von Rechten/Checks an. Wenn du nicht Dev/Supporter bist, sind Setup/Moderation versteckt.</p>
+        </details>
+        <details>
+          <summary>Warum sind Logs wichtig?</summary>
+          <p>Logs zeigen „Actor + Target + Reason“. Das verhindert Missverständnisse und erleichtert Moderations-Review.</p>
+        </details>
+        <details>
+          <summary>Wie halte ich Permissions minimal?</summary>
+          <p>Gib dem Bot nur Permissions, die du wirklich nutzt (Moderate Members für Timeout, Manage Messages für Purge, usw.).</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <strong>Cheese Club Bot</strong>
+        <div class="muted">Statische Dokumentationsseite. Passe Inhalte nach Bedarf an.</div>
+      </div>
+      <div class="muted">© 2026</div>
+    </div>
+  </footer>
+</body>
+</html>
